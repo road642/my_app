@@ -7,6 +7,7 @@ var session = require('express-session');
 var flash = require('connect-flash');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var engine = require('ejs-locals');
 
 // connect database
 mongoose.connect(process.env.MONGO_DB);
@@ -28,6 +29,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(flash());
 app.use(session({secret:'thisissecretkey'}));
+app.engine('ejs', engine);
 
 var passport = require('./config/passport');
 app.use(passport.initialize());

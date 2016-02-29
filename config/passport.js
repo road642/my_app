@@ -29,7 +29,7 @@ passport.use('local-login',
           req.flash("email", req.body.email);
           return done(null, false, req.flash('loginError', 'Password does not Match.'));
         }
-        return done(null, error);
+        return done(null, user);
       });
     }
   )

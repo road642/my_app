@@ -103,4 +103,4 @@ function checkUserRegValidation(req, res, next){
   );
 }
 
-modeul.exports = router;
+module.exports = router;

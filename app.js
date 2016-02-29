@@ -22,7 +22,7 @@ db.on("error", function(err){
 app.set("view engine", 'ejs');
 
 // set middlewares
-app.use(express.static(path.join(__dirname, '/public')));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
@@ -33,7 +33,12 @@ var passport = require('./config/passport');
 app.use(passport.initialize());
 app.use(passport.session());
 
+app.use('/', require('./routes/home'));
+app.use('/users', require('./routes/users'));
+app.use('/posts', require('./routes/posts'));
+
 // start server
-app.listen(15075, function(){
+var port = process.env.PORT || 15075;
+app.listen(port, function(){
   console.log('Server On!');
 });

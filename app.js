@@ -27,7 +27,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(methodOverride("_method"));
 app.use(flash());
-app.use(session({secret:'thisissecretkey'}));
+app.use(session({
+  secret:'thisissecretkey',
+  resave:true,
+  saveUninitialized:true
+}));
 
 var passport = require('./config/passport');
 app.use(passport.initialize());
